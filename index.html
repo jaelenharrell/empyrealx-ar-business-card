@@ -1,28 +1,319 @@
 <html>
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.5/dist/mindar-image-aframe.prod.js"></script>
 
-        <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
-        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.aframe.js"></script>
-    </head>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.aframe.js"></script>
 
-    <body>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-      <a-assets>
-	<img id="card" src="./ex-ar-biz-card.jpg" />
-	<a-asset-item id="avatarModel" src="./EX.glb"></a-asset-item>
-      </a-assets>
+    <script>
+      const showInfo = () => {
+        let y = 0;
+        const profileButton = document.querySelector("#profile-button");
+        const webButton = document.querySelector("#web-button");
+        const emailButton = document.querySelector("#email-button");
+        const locationButton = document.querySelector("#location-button");
+        const text = document.querySelector("#text");
 
-      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+        profileButton.setAttribute("visible", true);
+        setTimeout(() => {
+          webButton.setAttribute("visible", true);
+        }, 300);
+        setTimeout(() => {
+          emailButton.setAttribute("visible", true);
+        }, 600);
+        setTimeout(() => {
+          locationButton.setAttribute("visible", true);
+        }, 900);
 
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
-        <a-gltf-model rotation="0 0 0" position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
-      </a-entity>
-    </a-scene>
+        let currentTab = '';
+        webButton.addEventListener('click', function (evt) {
+          text.setAttribute("value", "https://empyrealx.com");
+          currentTab = 'web';
+        });
+        emailButton.addEventListener('click', function (evt) {
+          text.setAttribute("value", "jaelenharrell@empyrealx.com");
+          currentTab = 'email';
+        });
+        profileButton.addEventListener('click', function (evt) {
+          text.setAttribute("value", "Creative Technology Solutions: Consultations, Mobile Apps, Marketing, Commercial Products & More");
+          currentTab = 'profile';
+        });
+        locationButton.addEventListener('click', function (evt) {
+          console.log("loc");
+          text.setAttribute("value", "Indianapolis, IN (relocating to San Diego soon!)");
+          currentTab = 'location';
+        });
+
+        text.addEventListener('click', function (evt) {
+          if (currentTab === 'web') {
+            window.location.href="https://empyrealx.com";
+          }
+        });
+      }
+
+      const showPortfolio = (done) => {
+        const portfolio = document.querySelector("#portfolio-panel");
+        const portfolioLeftButton = document.querySelector("#portfolio-left-button");
+        const portfolioRightButton = document.querySelector("#portfolio-right-button");
+        const exintrovidPreviewButton = document.querySelector("#exintrovid-preview-button");
+
+        let y = 0;
+        let currentItem = 0;
+
+        portfolio.setAttribute("visible", true);
+
+        const showPortfolioItem = (item) => {
+          for (let i = 0; i <= 2; i++) {
+            document.querySelector("#portfolio-item" + i).setAttribute("visible", i === item);
+          }
+        }
+        const id = setInterval(() => {
+          y += 0.008;
+          if (y >= 0.6) {
+            clearInterval(id);
+            portfolioLeftButton.setAttribute("visible", true);
+            portfolioRightButton.setAttribute("visible", true);
+            portfolioLeftButton.addEventListener('click', () => {
+              currentItem = (currentItem + 1) % 3;
+              showPortfolioItem(currentItem);
+            });
+            portfolioRightButton.addEventListener('click', () => {
+              currentItem = (currentItem - 1 + 3) % 3;
+              showPortfolioItem(currentItem);
+            });
+
+            exintrovidPreviewButton.addEventListener('click', () => {
+              exintrovidPreviewButton.setAttribute("visible", false);
+              const testVideo = document.createElement( "video" );
+              const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+              if (canplayWebm == "") {
+                document.querySelector("#exintrovid-video-link").setAttribute("src", "#exintrovid-video-mp4");
+                document.querySelector("#exintrovid-video-mp4").play();
+              } else {
+                document.querySelector("#exintrovid-video-link").setAttribute("src", "#exintrovid-video-webm");
+                document.querySelector("#exintrovid-video-webm").play();
+              }
+            });
+
+            setTimeout(() => {
+              done();
+            }, 500);
+          }
+          portfolio.setAttribute("position", "0 " + y + " -0.01");
+        }, 10);
+      }
+
+      const showAvatar = (onDone) => {
+        const avatar = document.querySelector("#avatar");
+        let z = -0.3;
+        const id = setInterval(() => {
+          z += 0.008;
+          if (z >= 0.3) {
+            clearInterval(id);
+            onDone();
+          }
+          avatar.setAttribute("position", "0 -0.25 " + z);
+        }, 10);
+      }
+
+      AFRAME.registerComponent('mytarget', {
+        init: function () {
+          this.el.addEventListener('targetFound', event => {
+            console.log("target found");
+            showAvatar(() => {
+              setTimeout(() => {
+                showPortfolio(() => {
+                  setTimeout(() => {
+                    showInfo();
+                  }, 300);
+                });
+              }, 300);
+            });
+          });
+          this.el.addEventListener('targetLost', event => {
+            console.log("target found");
+          });
+          //this.el.emit('targetFound');
+        }
+      });
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+      }
+      .example-container {
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      
+      #example-scanning-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+      }
+      @media (min-aspect-ratio: 1/1) {
+        #example-scanning-overlay .inner {
+          width: 50vh;
+          height: 50vh;
+        }
+      }
+      @media (max-aspect-ratio: 1/1) {
+        #example-scanning-overlay .inner {
+          width: 80vw;
+          height: 80vw;
+        }
+      }
+
+      #example-scanning-overlay .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        background:
+          linear-gradient(to right, white 10px, transparent 10px) 0 0,
+          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
+
+      #example-scanning-overlay.hidden {
+        display: none;
+      }
+
+      #example-scanning-overlay img {
+        opacity: 0.6;
+        width: 90%;
+        align-self: center;
+      }
+
+      #example-scanning-overlay .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+      @keyframes move {
+        0%, 100% { top: 0% }
+        50% { top: calc(100% - 10px) }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="example-container">
+      <div id="example-scanning-overlay" class="">
+        <div class="inner">
+          <img src="./assets/exbizcard.png">
+          <div class="scanline"></div>
+        </div>
+      </div>
+
+      <a-scene mindar-image="imageTargetSrc: ./assets/exbizcard-targets.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded="" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" inspector="" keyboard-shortcuts="" screenshot="">
+        <a-assets>
+          <img id="card" src="./assets/exbizcard.png">
+          <img id="icon-web" src="./assets/icons/web.png">
+          <img id="icon-location" src="./assets/icons/location.png">
+          <img id="icon-profile" src="./assets/icons/profile.png">
+          <img id="icon-phone" src="./assets/icons/phone.png">
+          <img id="icon-email" src="./assets/icons/email.png">
+          <img id="icon-play" src="./assets/icons/play.png">
+          <img id="icon-left" src="./assets/icons/left.png">
+          <img id="icon-right" src="./assets/icons/right.png">
+          <img id="exintrovid-preview" src="./assets/portfolio/exintrovid-preview.png">
+          <video id="exintrovid-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
+          <video id="exintrovid-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
+          <img id="coffeemachine-preview" src="./assets/portfolio/exbizcard.png">
+          <img id="peak-preview" src="./assets/portfolio/exbizcard1.png">
+          
+          <a-asset-item id="avatarModel" src="./assets/EX.glb"></a-asset-item>
+        </a-assets>
+
+        <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable" camera="" rotation="" wasd-controls=""></a-camera>
+
+        <a-entity id="mytarget" mytarget="" mindar-image-target="targetIndex: 0">
+          <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0" material="" geometry=""></a-plane>
+
+          <a-entity visible="false" id="portfolio-panel" position="0 0 -0.01">
+            <a-text value="Portfolio" color="black" text-align="center" width="2" position="0 0.4 0" text=""></a-text>
+
+            <a-entity id="portfolio-item0">
+              <a-video id="exintrovid-video-link" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0 0 0" material="" geometry=""></a-video>
+              <a-image id="exintrovid-preview-button" class="clickable" src="#exintrovid-preview" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            </a-entity>
+
+            <a-entity id="portfolio-item1" visible="false">
+              <a-image class="clickable" src="#coffeemachine-preview" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            </a-entity>
+
+            <a-entity id="portfolio-item2" visible="false">
+              <a-image class="clickable" src="#peak-preview" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            </a-entity>
+
+            <a-image visible="false" id="portfolio-left-button" class="clickable" src="#icon-left" position="-0.7 0 0" height="0.15" width="0.15" material="" geometry=""></a-image>
+
+            <a-image visible="false" id="portfolio-right-button" class="clickable" src="#icon-right" position="0.7 0 0" height="0.15" width="0.15" material="" geometry=""></a-image>
+          </a-entity>
+
+          <a-image visible="false" id="profile-button" class="clickable" src="#icon-profile" position="-0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+
+          <a-image visible="false" id="web-button" class="clickable" src="#icon-web" alpha-test="0.5" position="-0.14 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+
+          <a-image visible="false" id="email-button" class="clickable" src="#icon-email" position="0.14 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+
+          <a-image visible="false" id="location-button" class="clickable" src="#icon-location" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+
+          <a-gltf-model id="avatar" rotation="0 0 0" position="0 -0.25 0" scale="0.004 0.004 0.004" src="#avatarModel" gltf-model=""></a-gltf-model>
+
+          <a-text id="text" class="clickable" value="" color="black" text-align="center" width="2" position="0 -1 0" geometry="primitive:plane; height: 0.1; width: 2;" material="opacity: 0.5" text=""></a-text>
+        </a-entity>
+
+        <canvas class="a-canvas a-mouse-cursor-hover" data-aframe-canvas="true" width="1592" height="1828"></canvas>
+
+        <div class="a-loader-title" style="display: none;"></div>
+
+        <a-entity light="" data-aframe-default-light="" aframe-injected=""></a-entity>
+
+        <a-entity light="" position="" data-aframe-default-light="" aframe-injected=""></a-entity>
+      </a-scene>
+
+      <video autoplay="" muted="" playsinline="" width="640" height="480" style="position: absolute; top: 0px; left: -211.333px; z-index: -2; width: 1218.67px; height: 914px;"></video>
+    </div>
+  
+
+    <div class="mindar-ui-overlay mindar-ui-loading hidden">
+        <div class="loader"></div>
+    </div>
+
+    <div class="mindar-ui-overlay mindar-ui-compatibility hidden">
+      <div class="content">
+        <h1>Unfortunately, we are unable to load the AR experience.</h1>
+        <p> It looks like your device or browser is not compatible. </p><br>
+        <br>
+        <p> Please try the following recommended browsers: </p>
+        <p> For Android device - Chrome </p>
+        <p> For iOS device - Safari </p>
+      </div>
+    </div>
   </body>
 </html>
