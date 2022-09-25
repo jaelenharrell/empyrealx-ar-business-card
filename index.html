@@ -59,8 +59,8 @@
         const portfolioLeftButton = document.querySelector("#portfolio-left-button");
         const portfolioRightButton = document.querySelector("#portfolio-right-button");
         const pmaPlayButton = document.querySelector("#pma-play-button");
-        const fsmPlayButton = document.querySelector("#fsm-play-button");
-        const itc3dPlayButton = document.querySelector("#itc3d-play-button");
+//        const fsmPlayButton = document.querySelector("#fsm-play-button");
+//        const itc3dPlayButton = document.querySelector("#itc3d-play-button");
 
 
         let y = 0;
@@ -101,31 +101,32 @@
               }
             });
 
-            fsmPlayButton.addEventListener('click', () => {
-              fsmPlayButton.setAttribute("visible", false);
-              const testVideo = document.createElement( "video" );
-              const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
-              if (canplayWebm == "") {
-                document.querySelector("#fsm-about-video-link").setAttribute("src", "#fsm-about-video-mp4");
-                document.querySelector("#fsm-about-video-mp4").play();
-              } else {
-                document.querySelector("#fsm-about-video-link").setAttribute("src", "#fsm-about-video-webm");
-                document.querySelector("#fsm-about-video-webm").play();
-              }
-            });
+//            fsmPlayButton.addEventListener('click', () => {
+  //            fsmPlayButton.setAttribute("visible", false);
+    //          const testVideo = document.createElement( "video" );
+      //        const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+        //      if (canplayWebm == "") {
+          //      document.querySelector("#fsm-about-video-link").setAttribute("src", "#fsm-about-video-mp4");
+            //    document.querySelector("#fsm-about-video-mp4").play();
+              //} else {
+                //document.querySelector("#fsm-about-video-link").setAttribute("src", "#fsm-about-video-webm");
+                //document.querySelector("#fsm-about-video-webm").play();
+              //}
+            //});
 
-            itc3dPlayButton.addEventListener('click', () => {
-              itc3dPlayButton.setAttribute("visible", false);
-              const testVideo = document.createElement( "video" );
-              const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
-              if (canplayWebm == "") {
-                document.querySelector("#itc3d-about-video-link").setAttribute("src", "#itc3d-about-video-mp4");
-                document.querySelector("#itc3d-about-video-mp4").play();
-              } else {
-                document.querySelector("#itc3d-about-video-link").setAttribute("src", "#itc3d-about-video-webm");
-                document.querySelector("#itc3d-about-video-webm").play();
-              }
-            });
+//            itc3dPlayButton.addEventListener('click', () => {
+  //            itc3dPlayButton.setAttribute("visible", false);
+    //          const testVideo = document.createElement( "video" );
+      //        const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+        //      if (canplayWebm == "") {
+          //      document.querySelector("#itc3d-about-video-link").setAttribute("src", "#itc3d-about-video-mp4");
+            //    document.querySelector("#itc3d-about-video-mp4").play();
+              //} else {
+                //document.querySelector("#itc3d-about-video-link").setAttribute("src", "#itc3d-about-video-webm");
+                //document.querySelector("#itc3d-about-video-webm").play();
+              //}
+            //});
+            
 
             setTimeout(() => {
               done();
@@ -317,7 +318,7 @@
 
           <a-image visible="false" id="location-button" class="clickable" src="#icon-location" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-gltf-model id="avatar" rotation="0 0 0" position="0 0 0" scale="0.01 0.01 0.01" src="./assets/EX.gltf" gltf-model=""></a-gltf-model>
+          <a-gltf-model id="avatar" rotation="0 0 0" position="0 0 0" scale="0.01 0.01 0.01" src="#avatarModel" gltf-model=""></a-gltf-model>
 
           <a-text id="text" class="clickable" value="" color="black" align="center" width="2" position="0 -1 0" geometry="primitive:plane; height: 0.1; width: 2;" material="opacity: 0.5" text=""></a-text>
         </a-entity>
