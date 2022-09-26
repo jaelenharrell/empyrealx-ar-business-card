@@ -12,8 +12,8 @@
       const showInfo = () => {
         let y = 0;
         const phoneButton = document.querySelector("#phone-button");
-        const webButton = document.querySelector("#web-button");
         const emailButton = document.querySelector("#email-button");
+        const webButton = document.querySelector("#web-button");
         const morelinksButton = document.querySelector("#more-links-button");
         const text = document.querySelector("#text");
 
@@ -263,19 +263,18 @@
     <div class="example-container">
       <div id="example-scanning-overlay" class="">
         <div class="inner">
-          <img src="./assets/exbizcard.png">
+          <img src="./assets/overlay/scanning-overlay.png">
           <div class="scanline"></div>
         </div>
       </div>
 
       <a-scene mindar-image="imageTargetSrc: ./assets/exbizcard-targets.mind; showStats: false; uiScanning: #example-scanning-overlay;" embedded="" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" inspector="" keyboard-shortcuts="" screenshot="">
         <a-assets>
-          <img id="card" src="./assets/exbizcard.png">
-          <img id="icon-web" src="./assets/icons/web.png">
-          <img id="icon-more links" src="./assets/icons/location.png">
-          <img id="icon-profile" src="./assets/icons/profile.png">
+          <img id="card-overlay" src="./assets/overlay/card-overlay.png">
           <img id="icon-phone" src="./assets/icons/phone.png">
           <img id="icon-email" src="./assets/icons/email.png">
+          <img id="icon-web" src="./assets/icons/web.png">
+          <img id="icon-more-links" src="./assets/icons/more-links.png">
           <img id="icon-play" src="./assets/icons/play.png">
           <img id="icon-left" src="./assets/icons/left.png">
           <img id="icon-right" src="./assets/icons/right.png">
@@ -295,7 +294,7 @@
         <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable" camera="" rotation="" wasd-controls=""></a-camera>
 
         <a-entity id="mytarget" mytarget="" mindar-image-target="targetIndex: 0">
-          <a-plane src="#card" position="0 0 0" height="0.552" width="1" rotation="0 0 0" material="" geometry=""></a-plane>
+          <a-plane src="#card-overlay" position="0 0 0" height="0.552" width="1" rotation="0 0 0" material="" geometry=""></a-plane>
 
           <a-entity visible="false" id="portfolio-panel" position="0 0 -0.01">
             <a-entity id="pma-about-video">
@@ -322,7 +321,7 @@
 
           <a-image visible="false" id="web-button" class="clickable" src="#icon-web" alpha-test="0.5" position="0.14 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-image visible="false" id="more-links-button" class="clickable" src="#icon-location" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="more-links-button" class="clickable" src="#icon-more-links" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
           <a-gltf-model id="avatar" rotation="0 0 0" position="0 0 0" scale="0.01 0.01 0.01" src="#avatarModel" gltf-model=""></a-gltf-model>
 
