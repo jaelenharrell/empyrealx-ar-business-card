@@ -19,7 +19,7 @@
         const phoneButton = document.querySelector("#phone-button");
         const emailButton = document.querySelector("#email-button");
         const webButton = document.querySelector("#web-button");
-        const locationButton = document.querySelector("#location-button");
+        const morelinksButton = document.querySelector("#more-links-button");
         const text = document.querySelector("#text");
 
         phoneButton.setAttribute("visible", true);
@@ -30,7 +30,7 @@
           webButton.setAttribute("visible", true);
         }, 600);
         setTimeout(() => {
-          locationButton.setAttribute("visible", true);
+          morelinksButton.setAttribute("visible", true);
         }, 900);
 
         let currentTab = '';
@@ -46,14 +46,20 @@
           text.setAttribute("value", "www.empyrealx.com");
           currentTab = 'web';
         });
-        locationButton.addEventListener('click', function (evt) {
+        morelinksButton.addEventListener('click', function (evt) {
           console.log("loc");
           text.setAttribute("value", "View more links");
-          currentTab = 'location';
+          currentTab = 'morelinks';
         });
 
         text.addEventListener('click', function (evt) {
           if (currentTab === 'web') {
+            window.location.href="https://empyrealx.com";
+          }
+        });
+
+        text.addEventListener('click', function (evt) {
+          if (currentTab === 'morelinks') {
             window.location.href="https://empyrealx.com";
           }
         });
@@ -64,8 +70,6 @@
         const portfolioLeftButton = document.querySelector("#portfolio-left-button");
         const portfolioRightButton = document.querySelector("#portfolio-right-button");
         const pmaPlayButton = document.querySelector("#pma-play-button");
-
-
 
         let y = 0;
         let currentItem = 0;
@@ -104,9 +108,6 @@
                 document.querySelector("#pma-about-video-webm").play();
               }
             });
-
-
-            
 
             setTimeout(() => {
               done();
@@ -248,7 +249,7 @@
           <img id="icon-phone" src="./assets/icons/phone.png">
           <img id="icon-email" src="./assets/icons/email.png">
           <img id="icon-web" src="./assets/icons/web.png">
-          <img id="icon-location" src="./assets/icons/web.png">
+          <img id="icon-more-links" src="./assets/icons/MoreLinks.png">
           <img id="icon-play" src="./assets/icons/play.png">
           <img id="icon-left" src="./assets/icons/left.png">
           <img id="icon-right" src="./assets/icons/right.png">
@@ -295,7 +296,7 @@
 
           <a-image visible="false" id="web-button" class="clickable" src="#icon-web" alpha-test="0.5" position="0.14 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-image visible="false" id="location-button" class="clickable" src="#icon-location" alpha-test="0.5" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="more-links-button" class="clickable" src="#icon-more-links" alpha-test="0.5" position="0.42 -0.5 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
           <a-gltf-model id="avatar" rotation="0 0 0" position="0 0 0" scale="0.01 0.01 0.01" src="#avatarModel" gltf-model=""></a-gltf-model>
 
