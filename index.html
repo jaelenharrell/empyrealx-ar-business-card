@@ -70,6 +70,8 @@
         const portfolioLeftButton = document.querySelector("#portfolio-left-button");
         const portfolioRightButton = document.querySelector("#portfolio-right-button");
         const pmaPlayButton = document.querySelector("#pma-play-button");
+        const exholoPlayButton = document.querySelector("#exholo-play-button");
+
 
         let y = 0;
         let currentItem = 0;
@@ -106,6 +108,19 @@
               } else {
                 document.querySelector("#pma-about-video-link").setAttribute("src", "#pma-about-video-webm");
                 document.querySelector("#pma-about-video-webm").play();
+              }
+            });
+
+            exholoPlayButton.addEventListener('click', () => {
+              exholoPlayButton.setAttribute("visible", false);
+              const testVideo = document.createElement( "video" );
+              const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+              if (canplayWebm == "") {
+                document.querySelector("#ex-holo-video-link").setAttribute("src", "#ex-holo-video-mp4");
+                document.querySelector("#ex-holo-video-mp4").play();
+              } else {
+                document.querySelector("#ex-holo-video-link").setAttribute("src", "#ex-holo-video-webm");
+                document.querySelector("#ex-holo-video-webm").play();
               }
             });
 
@@ -293,20 +308,21 @@
           </a-entity>
 
           <a-entity id="ex-holo-video">
-            <a-video src="#ex-holo-video-mp4" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0.1 0 0" material="" geometry=""></a-video>
+            <a-video id="ex-holo-video-link" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0.7 0 0" material="" geometry=""></a-video>
+            <a-image id="exholo-play-button" class="clickable" src="#pma-about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
           </a-entity>
 
-          <a-image visible="false" id="phone-button" class="clickable" src="#icon-phone" position="-0.42 -0.3 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="phone-button" class="clickable" src="#icon-phone" position="-0.42 -0.4 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-image visible="false" id="email-button" class="clickable" src="#icon-email" position="-0.14 -0.3 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="email-button" class="clickable" src="#icon-email" position="-0.14 -0.4 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-image visible="false" id="web-button" class="clickable" src="#icon-web" alpha-test="0.5" position="0.14 -0.3 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="web-button" class="clickable" src="#icon-web" alpha-test="0.5" position="0.14 -0.4 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-image visible="false" id="more-links-button" class="clickable" src="#icon-more-links" alpha-test="0.5" position="0.42 -0.3 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
+          <a-image visible="false" id="more-links-button" class="clickable" src="#icon-more-links" alpha-test="0.5" position="0.42 -0.4 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
 
-          <a-gltf-model id="avatar" rotation="0 0 0" position="-0.7 0.5 0" scale="0.01 0.01 0.01" src="#avatarModel" gltf-model=""></a-gltf-model>
+          <a-gltf-model id="avatar" rotation="0 0 0" position="-0.7 0.5 0.1" scale="0.004 0.004 0.004" src="#avatarModel" gltf-model=""></a-gltf-model>
 
-          <a-text id="text" class="clickable" value="Click icon then click here" color="#00b6e5" align="center" width="2" position="0 -0.5 0" geometry="primitive:plane; height: 0.1; width: 2;" material="opacity: 0.5" text=""></a-text>
+          <a-text id="text" class="clickable" value="Click an icon then click here" color="black" align="center" width="2" position="0 -0.6 0" geometry="primitive:plane; height: 0.1; width: 2;" material="opacity: 0.5" text=""></a-text>
         </a-entity>
 
         <canvas class="a-canvas a-mouse-cursor-hover" data-aframe-canvas="true" width="1592" height="1828"></canvas>
