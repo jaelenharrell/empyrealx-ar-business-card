@@ -67,7 +67,7 @@
 
       const showPortfolio = (done) => {
         const portfolio = document.querySelector("#portfolio-panel");
-        const pmaPlayButton = document.querySelector("#pma-play-button");
+        const aboutvideoPlayButton = document.querySelector("#aboutvideo-play-button");
         const exholoPlayButton = document.querySelector("#exholo-play-button");
 
 
@@ -87,16 +87,16 @@
             clearInterval(id);
 
 
-            pmaPlayButton.addEventListener('click', () => {
-              pmaPlayButton.setAttribute("visible", false);
+            aboutvideoPlayButton.addEventListener('click', () => {
+              aboutvideoPlayButton.setAttribute("visible", false);
               const testVideo = document.createElement( "video" );
               const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
               if (canplayWebm == "") {
-                document.querySelector("#pma-about-video-link").setAttribute("src", "#pma-about-video-mp4");
-                document.querySelector("#pma-about-video-mp4").play();
+                document.querySelector("#about-video-link").setAttribute("src", "#about-video-mp4");
+                document.querySelector("#about-video-mp4").play();
               } else {
-                document.querySelector("#pma-about-video-link").setAttribute("src", "#pma-about-video-webm");
-                document.querySelector("#pma-about-video-webm").play();
+                document.querySelector("#about-video-link").setAttribute("src", "#about-video-webm");
+                document.querySelector("#about-video-webm").play();
               }
             });
 
@@ -257,9 +257,9 @@
           <img id="ex-holo-preview-img" src="./assets/portfolio/exintrovid-preview.png">
           <video id="ex-holo-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
           <video id="ex-holo-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
-          <img id="pma-about-preview-img" src="./assets/portfolio/exintrovid-preview.png">
-          <video id="pma-about-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
-          <video id="pma-about-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
+          <img id="about-preview-img" src="./assets/portfolio/exintrovid-preview.png">
+          <video id="about-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
+          <video id="about-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
 
           
           <a-asset-item id="avatarModel" src="./assets/EX.gltf"></a-asset-item>
@@ -271,9 +271,9 @@
           <a-plane src="#card-overlay" position="0 0 0" height="0.552" width="1" rotation="0 0 0" material="" geometry=""></a-plane>
 
           <a-entity visible="false" id="portfolio-panel" position="0 0 -0.01">
-            <a-entity id="pma-about-video">
-              <a-video id="pma-about-video-link" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0 0 0" material="" geometry=""></a-video>
-              <a-image id="pma-play-button" class="clickable" src="#pma-about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            <a-entity id="about-video">
+              <a-video id="about-video-link" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0 0 0" material="" geometry=""></a-video>
+              <a-image id="play-button" class="clickable" src="#about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
             </a-entity>
 
           </a-entity>
