@@ -97,7 +97,7 @@
               currentItem = (currentItem - 1 + 3) % 3;
               showPortfolioItem(currentItem);
             });
-            
+
             pmaPlayButton.addEventListener('click', () => {
               pmaPlayButton.setAttribute("visible", false);
               const testVideo = document.createElement( "video" );
@@ -265,13 +265,20 @@
           <img id="icon-email" src="./assets/icons/email.png">
           <img id="icon-web" src="./assets/icons/web.png">
           <img id="icon-more-links" src="./assets/icons/MoreLinks.png">
-          <img id="ex-holo-preview-img" src="./assets/portfolio/exintrovid-preview.png">
+          <img id="icon-play" src="./assets/icons/play.png">
+          <img id="icon-left" src="./assets/icons/left.png">
+          <img id="icon-right" src="./assets/icons/right.png">
           <video id="ex-holo-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
           <video id="ex-holo-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
           <img id="pma-about-preview-img" src="./assets/portfolio/exintrovid-preview.png">
           <video id="pma-about-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
           <video id="pma-about-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
-
+          <img id="fsm-about-preview-img" src="./assets/portfolio/exbizcard.png">
+          <video id="fsm-about-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
+          <video id="fsm-about-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
+          <img id="itc3d-about-preview-img" src="./assets/portfolio/exbizcard1.png">
+          <video id="itc3d-about-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.mp4" playsinline="" webkit-playsinline=""></video>
+          <video id="itc3d-about-video-webm" autoplay="false" loop="true" src="./assets/portfolio/exintrovid.webm" playsinline="" webkit-playsinline=""></video>
           
           <a-asset-item id="avatarModel" src="./assets/EX.gltf"></a-asset-item>
         </a-assets>
@@ -282,16 +289,29 @@
           <a-plane src="#card-overlay" position="0 0 0" height="0.552" width="1" rotation="0 0 0" material="" geometry=""></a-plane>
 
           <a-entity visible="false" id="portfolio-panel" position="0 0 -0.01">
+            <a-text value="Explainer Videos" color="black" text-align="center" width="2" position="0 0.4 0" text=""></a-text>
+
             <a-entity id="pma-about-video">
               <a-video id="pma-about-video-link" webkit-playsinline="" playsinline="" width="1" height="0.552" position="0 0 0" material="" geometry=""></a-video>
               <a-image id="pma-play-button" class="clickable" src="#pma-about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
             </a-entity>
 
+            <a-entity id="fsm-about-video" visible="false">
+              <a-image class="clickable" src="#fsm-about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            </a-entity>
+
+            <a-entity id="itc3d-about-video" visible="false">
+              <a-image class="clickable" src="#itc3d-about-preview-img" alpha-test="0.5" position="0 0 0" height="0.552" width="1" material="" geometry=""></a-image>
+            </a-entity>
+
+            <a-image visible="false" id="portfolio-left-button" class="clickable" src="#icon-left" position="-0.7 0 0" height="0.15" width="0.15" material="" geometry=""></a-image>
+
+            <a-image visible="false" id="portfolio-right-button" class="clickable" src="#icon-right" position="0.7 0 0" height="0.15" width="0.15" material="" geometry=""></a-image>
           </a-entity>
 
           <a-entity id="ex-holo-video">
             <a-video id="ex-holo-video-link" webkit-playsinline="" playsinline="" width="0.552" height="0.78" position="0.85 0 0" material="" geometry=""></a-video>
-            <a-image id="exholo-play-button" class="clickable" src="#ex-holo-preview-img" alpha-test="0.5" position="0.85 0 0" height="0.78" width="0.552" material="" geometry=""></a-image>
+            <a-image id="exholo-play-button" class="clickable" src="#pma-about-preview-img" alpha-test="0.5" position="0.85 0 0" height="0.78" width="0.552" material="" geometry=""></a-image>
           </a-entity>
 
           <a-image visible="false" id="phone-button" class="clickable" src="#icon-phone" position="-0.42 -0.4 0" height="0.15" width="0.15" animation="property: scale; to: 1.2 1.2 1.2; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate" material="" geometry=""></a-image>
