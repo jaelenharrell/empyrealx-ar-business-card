@@ -116,8 +116,8 @@
               const testVideo = document.createElement( "video" );
               const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
               if (canplayWebm == "") {
-                document.querySelector("#ex-holo-video-link").setAttribute("src", "#ex-holo-video-mp4");
-                document.querySelector("#ex-holo-video-mp4").play();
+                document.querySelector("#ex-holo-video-link").setAttribute("src", "#ex-holo-video-mov");
+                document.querySelector("#ex-holo-video-mov").play();
               } else {
                 document.querySelector("#ex-holo-video-link").setAttribute("src", "#ex-holo-video-webm");
                 document.querySelector("#ex-holo-video-webm").play();
@@ -268,7 +268,7 @@
           <img id="icon-play" src="./assets/icons/play.png">
           <img id="icon-left" src="./assets/icons/left.png">
           <img id="icon-right" src="./assets/icons/right.png">
-          <video id="ex-holo-video-mp4" autoplay="false" loop="true" src="./assets/portfolio/holotest.mp4" playsinline="" webkit-playsinline=""></video>
+          <video id="ex-holo-video-mov" autoplay="false" loop="true" src="./assets/portfolio/holotest.mov" playsinline="" webkit-playsinline=""></video>
           <video id="ex-holo-video-webm" autoplay="false" loop="true" src="./assets/portfolio/holotest.webm" playsinline="" webkit-playsinline=""></video>
           <img id="pma-about-preview-img" src="./assets/portfolio/exintrovid-preview.png">
           <img id="holo-about-preview-img" src="./assets/portfolio/holotest-preview.png">
